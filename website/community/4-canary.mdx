@@ -20,6 +20,8 @@ It permits you to **test new unreleased features** as soon as the pull requests 
 
 It is a good way to **give feedback to maintainers**, ensuring the newly implemented feature works as intended.
 
+Hello
+
 :::note
 
 Using a canary release in production might seem risky, but in practice, it's not.
@@ -32,11 +34,7 @@ A canary release passes all automated tests and is used in production by the Doc
 <InsertIfCanaryVersionUnknown>
 ```
 
-:::warning
-
-The canary version shown below **may not be up-to-date**. Please go to the [npm page](https://www.npmjs.com/package/@docusaurus/core?activeTab=versions) to find the actual version name.
-
-:::
+:::warning The canary version shown below **may not be up-to-date**. Please go to the [npm page](https://www.npmjs.com/package/@docusaurus/core?activeTab=versions) to find the actual version name. :::
 
 ```mdx-code-block
 </InsertIfCanaryVersionUnknown>
@@ -97,13 +95,9 @@ You can also upgrade the `@docusaurus/*` packages with command line:
 npm install --save-exact @docusaurus/core@canary @docusaurus/preset-classic@canary
 ```
 
-:::warning
+:::warning Make sure to include all the `@docusaurus/*` packages.
 
-Make sure to include all the `@docusaurus/*` packages.
-
-For canary releases, prefer using an exact version instead of a semver range (avoid the `^` prefix).
-
-:::
+For canary releases, prefer using an exact version instead of a semver range (avoid the `^` prefix). :::
 
 ```mdx-code-block
 </VersionsProvider>
