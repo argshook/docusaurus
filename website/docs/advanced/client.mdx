@@ -2,13 +2,13 @@
 description: How the Docusaurus client is structured
 ---
 
-# Client architecture
+# Client architecture &#x20;
 
 ## Theme aliases {#theme-aliases}
 
 A theme works by exporting a set of components, e.g. `Navbar`, `Layout`, `Footer`, to render the data passed down from plugins. Docusaurus and users use these components by importing them using the `@theme` webpack alias:
 
-```js
+```js npm2yarn
 import Navbar from '@theme/Navbar';
 ```
 
@@ -33,11 +33,11 @@ website
 
 `website/src/theme/Navbar.js` takes precedence whenever `@theme/Navbar` is imported. This behavior is called component swizzling. If you are familiar with Objective C where a function's implementation can be swapped during runtime, it's the exact same concept here with changing the target `@theme/Navbar` is pointing to!
 
-We already talked about how the "userland theme" in `src/theme` can re-use a theme component through the [`@theme-original`](../swizzling.mdx#wrapping) alias. One theme package can also wrap a component from another theme, by importing the component from the initial theme, using the `@theme-init` import.
+We already talked about how the "userland theme" in `src/theme` can re-use a theme component through the `@theme-original` alias. One theme package can also wrap a component from another theme, by importing the component from the initial theme, using the `@theme-init` import.
 
 Here's an example of using this feature to enhance the default theme `CodeBlock` component with a `react-live` playground feature.
 
-```js
+```js npm2yarn
 import InitialCodeBlock from '@theme-init/CodeBlock';
 import React from 'react';
 
@@ -52,15 +52,11 @@ export default function CodeBlock(props) {
 
 Check the code of `@docusaurus/theme-live-codeblock` for details.
 
-:::warning
-
 Unless you want to publish a re-usable "theme enhancer" (like `@docusaurus/theme-live-codeblock`), you likely don't need `@theme-init`.
-
-:::
 
 It can be quite hard to wrap your mind around these aliases. Let's imagine the following case with a super convoluted setup with three themes/plugins and the site itself all trying to define the same component. Internally, Docusaurus loads these themes as a "stack".
 
-```text
+```text npm2yarn
 +-------------------------------------------------+
 |        `website/src/theme/CodeBlock.js`         | <-- `@theme/CodeBlock` always points to the top
 +-------------------------------------------------+
@@ -86,16 +82,16 @@ Client modules are part of your site's bundle, just like theme components. Howev
 
 These modules are imported globally before React even renders the initial UI.
 
-```js title="@docusaurus/core/App.tsx"
+```js npm2yarn
 // How it works under the hood
 import '@generated/client-modules';
 ```
 
-Plugins and sites can both declare client modules, through [`getClientModules`](../api/plugin-methods/lifecycle-apis.mdx#getClientModules) and [`siteConfig.clientModules`](../api/docusaurus.config.js.mdx#clientModules), respectively.
+Plugins and sites can both declare client modules, through `getClientModules` and `siteConfig.clientModules`, respectively.
 
 Client modules are called during server-side rendering as well, so remember to check the [execution environment](./ssg.mdx#escape-hatches) before accessing client-side globals.
 
-```js title="mySiteGlobalJs.js"
+```js npm2yarn
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 if (ExecutionEnvironment.canUseDOM) {
@@ -110,7 +106,7 @@ if (ExecutionEnvironment.canUseDOM) {
 
 CSS stylesheets imported as client modules are [global](../styling-layout.mdx#global-styles).
 
-```css title="mySiteGlobalCss.css"
+```css npm2yarn
 /* This stylesheet is global. */
 .globalSelector {
   color: red;
@@ -136,7 +132,7 @@ For every route transition, there will be several important timings:
 
 Note that the new page's DOM is only available during event (4). If you need to manipulate the new page's DOM, you'll likely want to use `onRouteDidUpdate`, which will be fired as soon as the DOM on the new page has mounted.
 
-```js title="myClientModule.js"
+```js npm2yarn
 export function onRouteDidUpdate({location, previousLocation}) {
   // Don't execute if we are still on the same page; the lifecycle may be fired
   // because the hash changes (e.g. when navigating between headings)
@@ -161,7 +157,7 @@ export function onRouteUpdate({location, previousLocation}) {
 
 Or, if you are using TypeScript and you want to leverage contextual typing:
 
-```ts title="myClientModule.ts"
+```ts npm2yarn
 import type {ClientModule} from '@docusaurus/types';
 
 const module: ClientModule = {
@@ -177,8 +173,4 @@ export default module;
 
 Both lifecycles will fire on first render, but they will not fire on server-side, so you can safely access browser globals in them.
 
-:::tip Prefer using React
-
 Client module lifecycles are purely imperative, and you can't use React hooks or access React contexts within them. If your operations are state-driven or involve complicated DOM manipulations, you should consider [swizzling components](../swizzling.mdx) instead.
-
-:::
