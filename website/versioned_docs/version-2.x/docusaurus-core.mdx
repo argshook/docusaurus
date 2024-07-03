@@ -37,7 +37,7 @@ import ErrorBoundaryTestButton from "@site/src/components/ErrorBoundaryTestButto
 
 :::tip
 
-To see it in action, click here: <ErrorBoundaryTestButton/>
+To see it in action, click here: <ErrorBoundaryTestButton />
 
 :::
 
@@ -57,11 +57,7 @@ This component doesn't catch build-time errors and only protects against client-
 
 - `fallback`: an optional render callback returning a JSX element. It will receive an object with 2 attributes: `error`, the error that was caught, and `tryAgain`, a function (`() => void`) callback to reset the error in the component and try rendering it again. If not present, `@theme/Error` will be rendered instead. `@theme/Error` is used for the error boundaries wrapping the site, above the layout.
 
-:::warning
-
-The `fallback` prop is a callback, and **not a React functional component**. You can't use React hooks inside this callback.
-
-:::
+:::warning The `fallback` prop is a callback, and **not a React functional component**. You can't use React hooks inside this callback. :::
 
 ### `<Head/>` {#head}
 
@@ -405,13 +401,9 @@ The `siteConfig` object only contains **serializable values** (values that are p
 
 Returns `true` when the React app has successfully hydrated in the browser.
 
-:::warning
+:::warning Use this hook instead of `typeof windows !== 'undefined'` in React rendering logic.
 
-Use this hook instead of `typeof windows !== 'undefined'` in React rendering logic.
-
-The first client-side render output (in the browser) **must be exactly the same** as the server-side render output (Node.js). Not following this rule can lead to unexpected hydration behaviors, as described in [The Perils of Rehydration](https://www.joshwcomeau.com/react/the-perils-of-rehydration/).
-
-:::
+The first client-side render output (in the browser) **must be exactly the same** as the server-side render output (Node.js). Not following this rule can lead to unexpected hydration behaviors, as described in [The Perils of Rehydration](https://www.joshwcomeau.com/react/the-perils-of-rehydration/). :::
 
 Usage example:
 
@@ -431,16 +423,12 @@ const MyComponent = () => {
 
 React hook to prepend your site `baseUrl` to a string.
 
-:::warning
-
-**Don't use it for regular links!**
+:::warning **Don't use it for regular links!**
 
 The `/baseUrl/` prefix is automatically added to all **absolute paths** by default:
 
 - Markdown: `[link](/my/path)` will link to `/baseUrl/my/path`
-- React: `<Link to="/my/path/">link</Link>` will link to `/baseUrl/my/path`
-
-:::
+- React: `<Link to="/my/path/">link</Link>` will link to `/baseUrl/my/path` :::
 
 #### Options {#options}
 
@@ -691,11 +679,7 @@ export default function Home() {
 
 A module that exposes a few boolean variables to check the current rendering environment.
 
-:::warning
-
-For React rendering logic, use [`useIsBrowser()`](#useIsBrowser) or [`<BrowserOnly>`](#browseronly) instead.
-
-:::
+:::warning For React rendering logic, use [`useIsBrowser()`](#useIsBrowser) or [`<BrowserOnly>`](#browseronly) instead. :::
 
 Example:
 

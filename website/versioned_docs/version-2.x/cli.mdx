@@ -75,7 +75,7 @@ There are multiple ways to obtain a certificate. We will use [mkcert](https://gi
 HTTPS=true SSL_CRT_FILE=localhost.pem SSL_KEY_FILE=localhost-key.pem yarn start
 ```
 
-4. Open `https://localhost:3000/`
+1. Open `https://localhost:3000/`
 
 ### `docusaurus build [siteDir]` {#docusaurus-build-sitedir}
 
@@ -124,11 +124,7 @@ The swizzle CLI is interactive and will guide you through the whole [swizzle pro
 | `--typescript` | Swizzle the TypeScript variant component |
 | `--config` | Path to docusaurus config file, default to `[siteDir]/docusaurus.config.js` |
 
-:::warning
-
-Unsafe components have a higher risk of breaking changes due to internal refactorings.
-
-:::
+:::warning Unsafe components have a higher risk of breaking changes due to internal refactorings. :::
 
 ### `docusaurus deploy [siteDir]` {#docusaurus-deploy-sitedir}
 

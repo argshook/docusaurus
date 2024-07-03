@@ -147,7 +147,7 @@ module.exports = {
 Docusaurus will extract a `YYYY-MM-DD` date from a file/folder name such as `YYYY-MM-DD-my-blog-post-title.md`.
 
 <details>
-<summary>Example supported patterns</summary>
+  <summary>Example supported patterns</summary>
 
 | Pattern | Example |
 | --- | --- |
@@ -365,11 +365,7 @@ website/i18n/[locale]/docusaurus-plugin-content-blog/authors.yml
 
 An author, either declared through front matter or through the authors map, needs to have a name or an avatar, or both. If all authors of a post don't have names, Docusaurus will display their avatars compactly. See [this test post](/tests/blog/2022/01/20/image-only-authors) for the effect.
 
-:::warning Feed generation
-
-[RSS feeds](#feed) require the author's email to be set for the author to appear in the feed.
-
-:::
+:::warning Feed generation [RSS feeds](#feed) require the author's email to be set for the author to appear in the feed. :::
 
 ## Reading time {#reading-time}
 
@@ -432,7 +428,7 @@ module.exports = {
 
 Usage:
 
-```md "my-blog-post.md"
+```md
 ---
 hide_reading_time: true
 ---
@@ -560,27 +556,20 @@ module.exports = {
 The feeds can be found at:
 
 <Tabs>
-<TabItem value="RSS">
+  <TabItem value="RSS">
+    ```text
+    https://example.com/blog/rss.xml
+    ```
+  </TabItem>
 
-```text
-https://example.com/blog/rss.xml
-```
+{' '}
+<TabItem value="Atom">```text https://example.com/blog/atom.xml ```</TabItem>
 
-</TabItem>
-<TabItem value="Atom">
-
-```text
-https://example.com/blog/atom.xml
-```
-
-</TabItem>
-<TabItem value="JSON">
-
-```text
-https://example.com/blog/feed.json
-```
-
-</TabItem>
+  <TabItem value="JSON">
+    ```text
+    https://example.com/blog/feed.json
+    ```
+  </TabItem>
 </Tabs>
 
 ## Advanced topics {#advanced-topics}
@@ -609,11 +598,7 @@ module.exports = {
 };
 ```
 
-:::warning
-
-Don't forget to delete the existing homepage at `./src/pages/index.js` or else there will be two files mapping to the same route!
-
-:::
+:::warning Don't forget to delete the existing homepage at `./src/pages/index.js` or else there will be two files mapping to the same route! :::
 
 :::tip
 
